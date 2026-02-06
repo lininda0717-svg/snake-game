@@ -1,0 +1,35 @@
+ name: Build Snake Game
+    2
+    3      on:
+    4        push:
+    5          branches: [ "main" ]
+    6        workflow_dispatch:
+    7
+    8      jobs:
+    9        build:
+   10          runs-on: ${{ matrix.os }}
+   11
+   12          strategy:
+   13            matrix:
+   14              os: [windows-latest, macos-latest]
+   15
+   16          steps:
+   17          - uses: actions/checkout@v3
+   18
+   19          - name: Set up Node.js
+   20            uses: actions/setup-node@v3
+   21            with:
+   22              node-version: '20.x'
+   23              cache: 'npm'
+   24
+   25          - name: Install Dependencies
+   26            run: npm install
+   27
+   28          - name: Build Application
+   29            run: npm run build
+   30
+   31          - name: Upload Artifact
+   32            uses: actions/upload-artifact@v3
+   33            with:
+   34              name: snake-game-${{ matrix.os }}
+   35              path: dist/
