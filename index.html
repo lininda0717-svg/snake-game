@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Snake Game</h1>
+        <button id="help-btn">Help (?)</button>
+    </div>
+    <div class="game-container">
+        <canvas id="game-canvas" width="800" height="600"></canvas>
+        <div class="controls">
+            <h2>AI Settings</h2>
+            <label><input type="checkbox" id="ai-eat-food" checked> AI Eats Food</label>
+            <label><input type="checkbox" id="ai-eat-players" checked> AI Eats Players</label>
+        </div>
+        <div class="controls cheat-menu">
+            <h2>Cheat Menu</h2>
+            <div>
+                <label for="set-size-input">Set Player Size:</label>
+                <input type="number" id="set-size-input" min="1">
+                <button id="set-size-btn">Set</button>
+            </div>
+            <label><input type="checkbox" id="freeze-ai"> Freeze AI</label>
+            <label><input type="checkbox" id="spawn-ai-fixed-size"> Spawn AI at size 5</label>
+            <div>
+                <label>Spawn AI (Size/Count):</label>
+                <input type="number" id="spawn-ai-size-input" min="1" value="10" title="Size">
+                <input type="number" id="spawn-ai-count-input" min="1" value="1" title="Count">
+                <button id="spawn-ai-btn">Spawn</button>
+            </div>
+            <div>
+                <label>Spawn Food (Value/Count):</label>
+                <input type="number" id="spawn-food-value-input" min="1" value="1" title="Value">
+                <input type="number" id="spawn-food-count-input" min="1" value="1" title="Count">
+                <button id="spawn-food-btn">Spawn</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Virtual Joystick -->
+    <div id="joystick-container" style="display: none;">
+        <div id="joystick-base">
+            <div id="joystick-stick"></div>
+        </div>
+    </div>
+
+    <div class="score">
+        <p>Your Length: <span id="player-length">1</span></p>
+    </div>
+
+    <!-- The Help Modal -->
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>How to Play</h2>
+            <h3>Controls</h3>
+            <p><strong>WASD:</strong> Move your snake (or drag the virtual joystick on touch devices).</p>
+            <h3>Objective</h3>
+            <p>Eat food to grow your snake. Your goal is to become the biggest snake in the arena!</p>
+            <h3>Mechanics</h3>
+            <ul>
+                <li>The world is vast, filled with many AI snakes and abundant food.</li>
+                <li>Run into smaller snakes to eat them and absorb their length.</li>
+                <li>Avoid running into larger snakes, or you will be eaten.</li>
+                <li>Running into walls will end your game.</li>
+                <li>Your snake will not die if it runs into its own body.</li>
+                <li>Snakes with a length less than 50 have a shield (a blue aura) and cannot be eaten.</li>
+                <li>AI snakes will try to flee from larger snakes.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
